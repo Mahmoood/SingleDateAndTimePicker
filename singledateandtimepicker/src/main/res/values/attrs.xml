@@ -23,6 +23,7 @@
             <enum name="center" value="0"/>
             <enum name="left" value="1"/>
             <enum name="right" value="2"/>
+            <enum name="local" value="3"/>
         </attr>
     </declare-styleable>
 
@@ -32,6 +33,7 @@
         <attr name="picker_selectedTextColor" format="color"/>
         <attr name="picker_textSize" format="dimension"/>
         <attr name="picker_curved" format="boolean"/>
+        <attr name="picker_forceShowAmPm" format="boolean"/>
         <attr name="picker_cyclic" format="boolean"/>
         <attr name="picker_mustBeOnFuture" format="boolean"/>
         <attr name="picker_visibleItemCount" format="integer"/>

@@ -18,11 +18,16 @@
     <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
         android:id="@+id/single_day_picker"
         android:layout_width="wrap_content"
-        android:layout_height="230dp"
-        app:picker_curved="true"
+        android:layout_height="140dp"
+        app:picker_curved="false"
+        app:picker_forceShowAmPm="true"
         app:picker_cyclic="true"
+        app:picker_textSize="16dp"
+        app:picker_selectedTextColor="#1da1f2"
+        app:picker_textColor="#222121"
         app:picker_mustBeOnFuture="true"
-        app:picker_visibleItemCount="7"
+        app:picker_selectorColor="#FF8B8B"
+        app:picker_visibleItemCount="3"
         />
 
 </LinearLayout>

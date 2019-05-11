@@ -287,6 +287,10 @@ public class SingleDateAndTimePicker extends LinearLayout {
         }
     }
 
+    public void setShowAmPm(boolean isAmPm) {
+       this.isAmPm = isAmPm;
+    }
+
     public void setCyclic(boolean cyclic) {
         for (WheelPicker picker : pickers) {
             picker.setCyclic(cyclic);
@@ -566,6 +570,8 @@ public class SingleDateAndTimePicker extends LinearLayout {
         setDisplayYears(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayYears, displayYears));
         setDisplayDaysOfMonth(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayDaysOfMonth, displayDaysOfMonth));
         setDisplayMonthNumbers(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayMonthNumbers, monthPicker.displayMonthNumbers()));
+
+        setIsAmPm(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_forceShowAmPm, isAmPm));
 
         checkSettings();
         setMinYear();

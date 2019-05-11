@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Camera;
 import android.graphics.Canvas;
@@ -43,6 +42,7 @@ public abstract class WheelPicker<V> extends View {
     public static final int ALIGN_CENTER = 0;
     public static final int ALIGN_LEFT = 1;
     public static final int ALIGN_RIGHT = 2;
+    public static final int ALIGN_LOCAL = 3;
     protected final static String FORMAT = "%1$02d"; // two digits
     private final Handler handler = new Handler();
     protected V defaultValue;
@@ -231,6 +231,10 @@ public abstract class WheelPicker<V> extends View {
         mTextMaxHeight = (int) (metrics.bottom - metrics.top);
     }
 
+    private boolean isLTR() {
+        return TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_LTR;
+    }
+
     private void updateItemTextAlign() {
         switch (mItemAlign) {
             case ALIGN_LEFT:
@@ -238,6 +242,13 @@ public abstract class WheelPicker<V> extends View {
                 break;
             case ALIGN_RIGHT:
                 paint.setTextAlign(Paint.Align.RIGHT);
+                break;
+            case ALIGN_LOCAL:
+                if (isLTR()) {
+                    paint.setTextAlign(Paint.Align.LEFT);
+                } else {
+                    paint.setTextAlign(Paint.Align.RIGHT);
+                }
                 break;
             default:
                 paint.setTextAlign(Paint.Align.CENTER);
@@ -349,6 +360,13 @@ public abstract class WheelPicker<V> extends View {
             case ALIGN_RIGHT:
                 drawnCenterX = rectDrawn.right;
                 break;
+            case ALIGN_LOCAL:
+                if (isLTR()) {
+                    drawnCenterX = rectDrawn.left;
+                } else {
+                    drawnCenterX = rectDrawn.right;
+                }
+                break;
             default:
                 drawnCenterX = wheelCenterX;
                 break;
@@ -430,6 +448,13 @@ public abstract class WheelPicker<V> extends View {
                         break;
                     case ALIGN_RIGHT:
                         transX = rectDrawn.right;
+                        break;
+                    case ALIGN_LOCAL:
+                        if (isLTR()) {
+                            transX = rectDrawn.left;
+                        } else {
+                            transX = rectDrawn.right;
+                        }
                         break;
                 }
                 int transY = wheelCenterY - distanceToCenter;
