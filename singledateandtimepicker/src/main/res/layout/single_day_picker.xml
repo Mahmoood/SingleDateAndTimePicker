@@ -48,23 +48,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
 
-        <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
-            android:id="@+id/hoursPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            app:wheel_atmospheric="true"
-            app:wheel_item_align="center" />
-
-        <com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker
-            android:id="@+id/minutesPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            app:wheel_atmospheric="true"
-            app:wheel_item_align="center" />
+        <include layout="@layout/layout_hour_minute" />
 
         <com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker
             android:id="@+id/amPmPicker"

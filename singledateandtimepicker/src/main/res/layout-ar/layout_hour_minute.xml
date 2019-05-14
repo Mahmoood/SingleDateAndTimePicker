@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:showIn="@layout/single_day_picker">
+
+    <com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker
+        android:id="@+id/minutesPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="8dp"
+        android:paddingEnd="12dp"
+        app:wheel_atmospheric="true"
+        app:wheel_item_align="center" />
+
+    <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
+        android:id="@+id/hoursPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="14dp"
+        android:paddingEnd="8dp"
+        app:wheel_atmospheric="true"
+        app:wheel_item_align="center" />
+
+</merge>
