@@ -94,6 +94,7 @@ public abstract class WheelPicker<V> extends View {
     private boolean hasAtmospheric;
     private boolean isCyclic;
     private boolean isCurved;
+    private boolean showAssyrianMonthNames;
 
     private boolean isClick;
     private boolean isForceFinishScroll;
@@ -159,6 +160,7 @@ public abstract class WheelPicker<V> extends View {
         mCurtainColor = a.getColor(R.styleable.WheelPicker_wheel_curtain_color, 0x88FFFFFF);
         hasAtmospheric = a.getBoolean(R.styleable.WheelPicker_wheel_atmospheric, false);
         isCurved = a.getBoolean(R.styleable.WheelPicker_wheel_curved, false);
+        showAssyrianMonthNames = a.getBoolean(R.styleable.WheelPicker_wheel_show_assyrian_month_names, false);
         mItemAlign = a.getInt(R.styleable.WheelPicker_wheel_item_align, ALIGN_CENTER);
         a.recycle();
 
@@ -231,8 +233,12 @@ public abstract class WheelPicker<V> extends View {
         mTextMaxHeight = (int) (metrics.bottom - metrics.top);
     }
 
-    private boolean isLTR() {
+    protected boolean isLTR() {
         return TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_LTR;
+    }
+
+    protected boolean isRTL() {
+        return !isLTR();
     }
 
     private void updateItemTextAlign() {
@@ -910,6 +916,10 @@ public abstract class WheelPicker<V> extends View {
 
     public boolean isCurved() {
         return isCurved;
+    }
+
+    protected boolean isShowAssyrianMonthNames() {
+        return showAssyrianMonthNames;
     }
 
     public void setCurved(boolean isCurved) {

@@ -84,6 +84,9 @@ public class WheelDayPicker extends WheelPicker<String> {
             days.add(getFormattedValue(instance.getTime()));
         }
 
+        if (isShowAssyrianMonthNames()) {
+            return DateHelper.replaceToAssyrianMonthNames(days);
+        }
         return days;
     }
 
@@ -114,7 +117,11 @@ public class WheelDayPicker extends WheelPicker<String> {
 
     private Date convertItemToDate(int itemPosition) {
         Date date = null;
-        final String itemText = adapter.getItemText(itemPosition);
+        String itemText = adapter.getItemText(itemPosition);
+        // Reverse to normal Arabic months to be able to get the date from
+        if (isShowAssyrianMonthNames()) {
+            itemText = DateHelper.replaceToArabicMonthNames(itemText);
+        }
         final Calendar todayCalendar = Calendar.getInstance();
 
         final int todayPosition = adapter.getData().indexOf(getTodayText());

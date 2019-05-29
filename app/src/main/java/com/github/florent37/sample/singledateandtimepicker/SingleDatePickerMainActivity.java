@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import com.github.florent37.singledateandtimepicker.DateHelper;
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
+
+import java.util.Collections;
 import java.util.Date;
 
 public class SingleDatePickerMainActivity extends AppCompatActivity {
@@ -31,6 +35,7 @@ public class SingleDatePickerMainActivity extends AppCompatActivity {
     }
 
     private void display(String toDisplay) {
-        Toast.makeText(this, toDisplay, Toast.LENGTH_SHORT).show();
+        String s = DateHelper.replaceToAssyrianMonthNames(Collections.singletonList(toDisplay)).get(0);
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 }
