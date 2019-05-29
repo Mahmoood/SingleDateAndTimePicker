@@ -84,6 +84,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     private boolean displayHours = true;
 
     private boolean isAmPm;
+    private boolean showAssyrianMonthNames;
 
     public SingleDateAndTimePicker(Context context) {
         this(context, null);
@@ -331,6 +332,10 @@ public class SingleDateAndTimePicker extends LinearLayout {
         }
     }
 
+    public void setShowAssyrianMonthNames(boolean showAssyrianMonthNames) {
+        this.showAssyrianMonthNames = showAssyrianMonthNames;
+    }
+
     public void setIsAmPm(boolean isAmPm) {
         this.isAmPm = isAmPm;
 
@@ -572,7 +577,11 @@ public class SingleDateAndTimePicker extends LinearLayout {
         setDisplayMonthNumbers(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_displayMonthNumbers, monthPicker.displayMonthNumbers()));
 
         setIsAmPm(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_forceShowAmPm, isAmPm));
+        setShowAssyrianMonthNames(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_show_assyrian_month_names, showAssyrianMonthNames));
 
+        for (WheelPicker picker : pickers) {
+            picker.setShowAssyrianMonthNames(showAssyrianMonthNames);
+        }
         checkSettings();
         setMinYear();
 

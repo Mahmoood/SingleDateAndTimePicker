@@ -19,7 +19,6 @@
         <attr name="wheel_curtain_color" format="color"/>
         <attr name="wheel_atmospheric" format="boolean"/>
         <attr name="wheel_curved" format="boolean"/>
-        <attr name="wheel_show_assyrian_month_names" format="boolean"/>
         <attr name="wheel_item_align" format="enum">
             <enum name="center" value="0"/>
             <enum name="left" value="1"/>
@@ -47,5 +46,7 @@
         <attr name="picker_displayMinutes" format="boolean"/>
         <attr name="picker_displayHours" format="boolean"/>
         <attr name="picker_displayMonthNumbers" format="boolean" />
+        <attr name="picker_show_assyrian_month_names" format="boolean"/>
+
     </declare-styleable>
 </resources>
