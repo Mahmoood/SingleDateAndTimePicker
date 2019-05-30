@@ -2,6 +2,7 @@ package com.github.florent37.singledateandtimepicker;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -62,6 +63,10 @@ public class DateHelper {
                 .replaceAll("آذار", "مارس")
                 .replaceAll("نيسان", "أبريل");
         return s;
+    }
+
+    public static String replaceToAssyrianMonthNames(String text) {
+        return replaceToAssyrianMonthNames(Collections.singletonList(text)).get(0);
     }
 
     public static List<String> replaceToAssyrianMonthNames(List<String> list) {

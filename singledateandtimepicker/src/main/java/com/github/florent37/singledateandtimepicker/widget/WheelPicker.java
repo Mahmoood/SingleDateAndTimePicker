@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Scroller;
 
+import com.github.florent37.singledateandtimepicker.DateHelper;
 import com.github.florent37.singledateandtimepicker.LocaleHelper;
 import com.github.florent37.singledateandtimepicker.R;
 
@@ -692,7 +693,11 @@ public abstract class WheelPicker<V> extends View {
     }
 
     protected String getFormattedValue(Object value) {
-        return String.valueOf(value);
+        String s = String.valueOf(value);
+        if (isShowAssyrianMonthNames()) {
+            return DateHelper.replaceToAssyrianMonthNames(s);
+        }
+        return s;
     }
 
     public int getVisibleItemCount() {
