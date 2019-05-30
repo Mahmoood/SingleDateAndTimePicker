@@ -91,7 +91,11 @@ public class WheelDayPicker extends WheelPicker<String> {
     }
 
     protected String getFormattedValue(Object value) {
-        return getDateFormat().format(value);
+        String s = getDateFormat().format(value);
+        if (isShowAssyrianMonthNames()) {
+            return DateHelper.replaceToAssyrianMonthNames(s);
+        }
+        return s;
     }
 
     public WheelDayPicker setDayFormatter(SimpleDateFormat simpleDateFormat){
