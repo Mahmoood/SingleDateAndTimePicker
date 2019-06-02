@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.*;
+import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.DAYS_PADDING;
 
 public class WheelDayPicker extends WheelPicker<String> {
 
@@ -65,7 +65,7 @@ public class WheelDayPicker extends WheelPicker<String> {
 
     @Override
     protected List<String> generateAdapterValues() {
-        final List<String> days = new ArrayList<>();
+        List<String> days = new ArrayList<>();
 
         Calendar instance = Calendar.getInstance();
         instance.add(Calendar.DATE, -1 * DAYS_PADDING - 1);
@@ -85,7 +85,10 @@ public class WheelDayPicker extends WheelPicker<String> {
         }
 
         if (isShowAssyrianMonthNames()) {
-            return DateHelper.replaceToAssyrianMonthNames(days);
+            days = DateHelper.replaceToAssyrianMonthNames(days);
+        }
+        if (USE_ARABIC_NUMBERS_INSTEAD_OF_HINDI) {
+            days = DateHelper.convetFromHindiToArabicNumbers(days);
         }
         return days;
     }
@@ -93,7 +96,10 @@ public class WheelDayPicker extends WheelPicker<String> {
     protected String getFormattedValue(Object value) {
         String s = getDateFormat().format(value);
         if (isShowAssyrianMonthNames()) {
-            return DateHelper.replaceToAssyrianMonthNames(s);
+            s = DateHelper.replaceToAssyrianMonthNames(s);
+        }
+        if (USE_ARABIC_NUMBERS_INSTEAD_OF_HINDI) {
+            s = DateHelper.convertHindiNumbersToArabic(s);
         }
         return s;
     }

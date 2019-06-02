@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.github.florent37.singledateandtimepicker.DateHelper.convertHindiNumbersToArabic;
 import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.MAX_MINUTES;
 import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.MIN_MINUTES;
 import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.STEP_MINUTES_DEFAULT;
@@ -79,7 +80,12 @@ public class WheelMinutePicker extends WheelPicker<String> {
             instance.setTime((Date) value);
             valueItem = instance.get(Calendar.MINUTE);
         }
-        return String.format(getCurrentLocale(), FORMAT, valueItem);
+        String result = String.format(getCurrentLocale(), FORMAT, valueItem);
+        if (USE_ARABIC_NUMBERS_INSTEAD_OF_HINDI) {
+            return convertHindiNumbersToArabic(result);
+        } else {
+            return result;
+        }
     }
 
     public void setStepMinutes(int stepMinutes) {

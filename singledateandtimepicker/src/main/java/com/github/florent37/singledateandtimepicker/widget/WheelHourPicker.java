@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.github.florent37.singledateandtimepicker.DateHelper.convertHindiNumbersToArabic;
 import static com.github.florent37.singledateandtimepicker.DateHelper.getHour;
 import static com.github.florent37.singledateandtimepicker.DateHelper.today;
 import static com.github.florent37.singledateandtimepicker.widget.SingleDateAndTimeConstants.*;
@@ -84,7 +85,12 @@ public class WheelHourPicker extends WheelPicker<String> {
             instance.setTime((Date) value);
             valueItem = instance.get(Calendar.HOUR_OF_DAY);
         }
-        return String.format(getCurrentLocale(), FORMAT, valueItem);
+        String result = String.format(getCurrentLocale(), FORMAT, valueItem);
+        if (USE_ARABIC_NUMBERS_INSTEAD_OF_HINDI) {
+            return convertHindiNumbersToArabic(result);
+        } else {
+            return result;
+        }
     }
 
     @Override

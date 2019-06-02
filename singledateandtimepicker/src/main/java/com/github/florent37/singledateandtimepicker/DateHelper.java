@@ -90,4 +90,56 @@ public class DateHelper {
         }
         return result;
     }
+
+    public static List<String> convetFromHindiToArabicNumbers(List<String> list) {
+        List<String> result = new ArrayList<>();
+        for (String text : list) {
+            String s = convertHindiNumbersToArabic(text);
+            result.add(s);
+        }
+        return result;
+    }
+
+        /**
+         * Convert arabic numbers in [text] to English numbers for example:
+         * `لنسير ١٣ متر`
+         * will be converted to:
+         * `لنسير 13 متر`
+         */
+    public static String convertHindiNumbersToArabic(String text) {
+        char[] chars = new char[text.length()];
+        boolean previousCharacterMatched = false;
+        for (int i = 0; i<text.length(); i++) {
+            char ch = text.charAt(i);
+            int chInt = ch;
+
+            if (ch == '٫' && previousCharacterMatched) { // Replace arabic comma with English one
+                ch = '.';
+                previousCharacterMatched = false;
+            } else if (chInt >= 0x0660 && chInt <= 0x0669) {
+                char value = (0x0660 - '0');
+                ch = (char) (ch - value);
+                previousCharacterMatched = true;
+            } else if (chInt >= 0x06f0 && chInt <= 0x06F9) {
+                char value = (0x06f0 - '0');
+                ch = (char) (ch - value);
+                previousCharacterMatched = true;
+            } else {
+                previousCharacterMatched = false;
+            }
+            chars[i] = ch;
+        }
+
+        return getStringRepresentation(chars);
+    }
+
+    private static String getStringRepresentation(char[] list)
+    {
+        StringBuilder builder = new StringBuilder(list.length);
+        for(char ch: list)
+        {
+            builder.append(ch);
+        }
+        return builder.toString();
+    }
 }

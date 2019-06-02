@@ -44,6 +44,8 @@ public abstract class WheelPicker<V> extends View {
     public static final int ALIGN_LEFT = 1;
     public static final int ALIGN_RIGHT = 2;
     public static final int ALIGN_LOCAL = 3;
+    protected final boolean USE_ARABIC_NUMBERS_INSTEAD_OF_HINDI = true;
+
     protected final static String FORMAT = "%1$02d"; // two digits
     private final Handler handler = new Handler();
     protected V defaultValue;
